@@ -39,3 +39,14 @@ def plot_MLR(Y_test_MLR, MLR_test_predictions, save=False):
         IMAGE_DIR.mkdir(exist_ok=True)
         plt.savefig(IMAGE_DIR / "MLR_Actual_vs_Predicted.png")
     plt.show()
+
+def plot_comparison(SLR_score, MLR_score, save=False):
+    plt.figure(figsize=(6, 4))
+    plt.bar(["SLR", "MLR"], [SLR_score, MLR_score])
+    plt.ylabel("R2 Score")
+    plt.title("Model Comparison (R2)")
+    plt.ylim(0, 1)
+    if save:
+        IMAGE_DIR.mkdir(exist_ok=True)
+        plt.savefig(IMAGE_DIR / "model_comparison_r2.png")
+    plt.show()
