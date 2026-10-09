@@ -23,3 +23,19 @@ def  plot_SLR(X_test_SLR, Y_test_SLR, save=False):
         IMAGE_DIR.mkdir(exist_ok=True)
         plt.savefig(IMAGE_DIR / "SLR_Regression_Line_Fit.png")
     plt.show()
+
+def plot_MLR(Y_test_MLR, MLR_test_predictions, save=False):
+    plt.figure(figsize=(6, 5))
+    sns.regplot(
+        x=Y_test_MLR,
+        y=MLR_test_predictions,
+        scatter_kws={'alpha': 0.25},
+        line_kws={'color': 'orange'}
+    )
+    plt.xlabel('Actual Values')
+    plt.ylabel('Predicted Values')
+    plt.title('MLR: Actual vs Predicted')
+    if save:
+        IMAGE_DIR.mkdir(exist_ok=True)
+        plt.savefig(IMAGE_DIR / "MLR_Actual_vs_Predicted.png")
+    plt.show()
