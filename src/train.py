@@ -4,7 +4,8 @@ from sklearn.impute import SimpleImputer
 from sklearn.linear_model import Ridge
 from sklearn.model_selection import GridSearchCV
 from preprocessing import build_preprocessor
-from config import CV_FOLDS
+from config import CV_FOLDS, MODEL_DIR
+import joblib
 
 def build_SLR_pipeline():
     return Pipeline([
@@ -26,3 +27,8 @@ def train(pipeline, param_grid, X_train, Y_train):
     print(f"Best params: {grid.best_params_}")
     print(f"Best R2:     {grid.best_score_:.4f}")
     return grid.best_estimator_
+
+def save(model, name):
+    MODEL_DIR.mkdir(exist_ok=True)
+    joblib.dump(model, MODEL_DIR / f"{name}.pkl")
+    print(f"saved {name}.pkl")
